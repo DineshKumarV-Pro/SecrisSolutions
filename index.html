@@ -936,13 +936,23 @@
         <div class="mock-stage">
           <h4>Stage 1 – PPDT</h4>
           <p>Picture Perception and Discussion Test practice modules with sample scenarios and evaluation guidance.</p>
-          <iframe
-  src="https://docs.google.com/presentation/d/1JsVhlk4D5TMEeRN7NNaT7JcN2N5TGtix/edit?usp=drivesdk&ouid=118187387357322385769&rtpof=true&sd=true"
-  width="100%"
-  height="800"
-  frameborder="0"
-  allowfullscreen>
-          </iframe>
+          <a href="#" onclick="openPPDT1()" class="btn-primary">
+  ▶ Start PPDT-1 Test
+</a>
+
+<div id="ppdt1Modal" style="display:none;">
+  <iframe
+    src="PPDT1.pdf"
+    width="100%"
+    height="700">
+  </iframe>
+</div>
+
+<script>
+function openPPDT1() {
+  document.getElementById("ppdt1Modal").style.display = "block";
+}
+</script>
 
 <a href="PPDT%202%20(1).pptx" target="_blank" class="btn-primary">
 ▶ Start PPDT-2 Test
