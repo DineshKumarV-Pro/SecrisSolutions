@@ -547,6 +547,95 @@
       margin-top: 6px;
     }
 
+    .slideshow-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+      padding: 0;
+    }
+
+    .slideshow-modal.open {
+      display: flex;
+    }
+
+    .slideshow-viewer {
+      width: 100vw;
+      height: 100dvh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 0;
+    }
+
+    .slideshow-topbar,
+    .slideshow-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--white);
+      padding: 14px 18px;
+      background: rgba(31, 30, 28, 0.82);
+    }
+
+    .slideshow-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .slideshow-count {
+      color: var(--army-khaki);
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    .slideshow-frame {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      background: #111;
+      border: 0;
+      border-radius: 0;
+      overflow: hidden;
+    }
+
+    .slideshow-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #111;
+    }
+
+    .slide-icon-btn {
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(254, 252, 247, 0.35);
+      border-radius: 8px;
+      background: rgba(254, 252, 247, 0.08);
+      color: var(--white);
+      cursor: pointer;
+      display: inline-grid;
+      place-items: center;
+      transition: 0.2s ease;
+    }
+
+    .slide-icon-btn:hover {
+      background: var(--army-gold);
+      border-color: var(--army-gold);
+      color: var(--army-dark);
+    }
+
+    .slideshow-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
     /* ----- ABOUT US (army – refined) ----- */
     .about {
       padding: 80px 0;
@@ -936,29 +1025,15 @@
         <div class="mock-stage">
           <h4>Stage 1 – PPDT</h4>
           <p>Picture Perception and Discussion Test practice modules with sample scenarios and evaluation guidance.</p>
-          <a href="https://docs.google.com/presentation/d/1Lkd6K6XGsA22nMOqDZbVUOxJaVkNNo9W/edit?usp=drivesdk&ouid=101202698438362415013&rtpof=true&sd=true" onclick="openPPDT1()" class="btn-primary">
+          <a href="#" class="btn-primary ppdt-trigger" data-ppdt="ppdt1">
   ▶ Start PPDT-1 Test
 </a>
 
-<div id="ppdt1Modal" style="display:none;">
-  <iframe
-    src="PPDT1.pdf"
-    width="100%"
-    height="700">
-  </iframe>
-</div>
-
-<script>
-function openPPDT1() {
-  document.getElementById("ppdt1Modal").style.display = "block";
-}
-</script>
-
-<a href="PPDT%202%20(1).pptx" target="_blank" class="btn-primary">
+<a href="#" class="btn-primary ppdt-trigger" data-ppdt="ppdt2">
 ▶ Start PPDT-2 Test
 </a>
 
-<a href="PPDT%203-compressed.pptx" target="_blank" class="btn-primary">
+<a href="#" class="btn-primary ppdt-trigger" data-ppdt="ppdt3">
 ▶ Start PPDT-3 Test
 </a>
         </div>
@@ -1025,6 +1100,37 @@ function openPPDT1() {
     </div>
   </footer>
 
+  <div class="slideshow-modal" id="ppdtSlideshow" aria-hidden="true">
+    <div class="slideshow-viewer" role="dialog" aria-modal="true" aria-labelledby="slideTitle">
+      <div class="slideshow-topbar">
+        <div>
+          <div class="slideshow-title" id="slideTitle">PPDT Test</div>
+          <div class="slideshow-count" id="slideCount">Slide 1 / 4</div>
+        </div>
+        <button class="slide-icon-btn" type="button" id="slideClose" aria-label="Close slideshow" title="Close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="slideshow-frame">
+        <img id="slideImage" src="" alt="PPDT slide">
+        <audio id="slideAudio" preload="auto"></audio>
+      </div>
+      <div class="slideshow-controls">
+        <button class="slide-icon-btn" type="button" id="slidePrev" aria-label="Previous slide" title="Previous">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="slideshow-actions">
+          <button class="slide-icon-btn" type="button" id="slidePlay" aria-label="Pause slideshow" title="Pause">
+            <i class="fas fa-pause"></i>
+          </button>
+          <button class="slide-icon-btn" type="button" id="slideNext" aria-label="Next slide" title="Next">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- JavaScript for mobile toggle -->
   <script>
     (function() {
@@ -1054,5 +1160,176 @@ function openPPDT1() {
           });
         });
       }
+    })();
+
+    (function() {
+      const decks = {
+        ppdt1: {
+          title: 'PPDT-1 Test',
+          slides: [
+            'ppdt-slides/ppdt-1/Slide1.PNG',
+            'ppdt-slides/ppdt-1/Slide2.PNG',
+            'ppdt-slides/ppdt-1/Slide3.PNG',
+            'ppdt-slides/ppdt-1/Slide4.PNG'
+          ],
+          audio: [
+            'ppdt-audio/ppdt-1/slide1.m4a',
+            'ppdt-audio/ppdt-1/slide2.m4a',
+            'ppdt-audio/ppdt-1/slide3.m4a',
+            'ppdt-audio/ppdt-1/slide4.m4a'
+          ],
+          timings: [20908, 10599, 31617, 274037]
+        },
+        ppdt2: {
+          title: 'PPDT-2 Test',
+          slides: [
+            'ppdt-slides/ppdt-2/Slide1.PNG',
+            'ppdt-slides/ppdt-2/Slide2.PNG',
+            'ppdt-slides/ppdt-2/Slide3.PNG',
+            'ppdt-slides/ppdt-2/Slide4.PNG'
+          ],
+          audio: [
+            'ppdt-audio/ppdt-2/slide1.m4a',
+            'ppdt-audio/ppdt-2/slide2.m4a',
+            'ppdt-audio/ppdt-2/slide3.m4a',
+            'ppdt-audio/ppdt-2/slide4.m4a'
+          ],
+          timings: [20908, 10599, 31617, 274037]
+        },
+        ppdt3: {
+          title: 'PPDT-3 Test',
+          slides: [
+            'ppdt-slides/ppdt-3/Slide1.PNG',
+            'ppdt-slides/ppdt-3/Slide2.PNG',
+            'ppdt-slides/ppdt-3/Slide3.PNG',
+            'ppdt-slides/ppdt-3/Slide4.PNG'
+          ],
+          audio: [
+            'ppdt-audio/ppdt-3/slide1.m4a',
+            'ppdt-audio/ppdt-3/slide2.m4a',
+            'ppdt-audio/ppdt-3/slide3.m4a',
+            'ppdt-audio/ppdt-3/slide4.m4a'
+          ],
+          timings: [20908, 10599, 31617, 274037]
+        }
+      };
+
+      const modal = document.getElementById('ppdtSlideshow');
+      const image = document.getElementById('slideImage');
+      const audio = document.getElementById('slideAudio');
+      const title = document.getElementById('slideTitle');
+      const count = document.getElementById('slideCount');
+      const closeBtn = document.getElementById('slideClose');
+      const prevBtn = document.getElementById('slidePrev');
+      const nextBtn = document.getElementById('slideNext');
+      const playBtn = document.getElementById('slidePlay');
+      let activeDeck = null;
+      let activeIndex = 0;
+      let isPlaying = true;
+      let timer = null;
+
+      function renderSlide() {
+        if (!activeDeck) return;
+        image.src = activeDeck.slides[activeIndex];
+        image.alt = `${activeDeck.title} slide ${activeIndex + 1}`;
+        audio.src = activeDeck.audio[activeIndex];
+        audio.currentTime = 0;
+        if (isPlaying) {
+          audio.play().catch(function() {});
+        }
+        title.textContent = activeDeck.title;
+        count.textContent = `Slide ${activeIndex + 1} / ${activeDeck.slides.length}`;
+      }
+
+      function stopTimer() {
+        if (timer) {
+          clearTimeout(timer);
+          timer = null;
+        }
+      }
+
+      function startTimer() {
+        stopTimer();
+        if (!isPlaying || !activeDeck) return;
+        timer = setTimeout(function() {
+          activeIndex = (activeIndex + 1) % activeDeck.slides.length;
+          renderSlide();
+          startTimer();
+        }, activeDeck.timings[activeIndex]);
+      }
+
+      function setPlaying(nextState) {
+        isPlaying = nextState;
+        playBtn.innerHTML = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
+        playBtn.setAttribute('aria-label', isPlaying ? 'Pause slideshow' : 'Play slideshow');
+        playBtn.setAttribute('title', isPlaying ? 'Pause' : 'Play');
+        if (isPlaying) {
+          audio.play().catch(function() {});
+        } else {
+          audio.pause();
+        }
+        startTimer();
+      }
+
+      function openDeck(deckKey) {
+        activeDeck = decks[deckKey];
+        activeIndex = 0;
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        renderSlide();
+        setPlaying(true);
+        if (modal.requestFullscreen) {
+          modal.requestFullscreen().catch(function() {});
+        }
+      }
+
+      function closeDeck() {
+        stopTimer();
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        audio.pause();
+        audio.removeAttribute('src');
+        audio.load();
+        image.src = '';
+        if (document.fullscreenElement === modal && document.exitFullscreen) {
+          document.exitFullscreen().catch(function() {});
+        }
+      }
+
+      document.querySelectorAll('.ppdt-trigger').forEach(function(trigger) {
+        trigger.addEventListener('click', function(event) {
+          event.preventDefault();
+          openDeck(trigger.dataset.ppdt);
+        });
+      });
+
+      prevBtn.addEventListener('click', function() {
+        activeIndex = (activeIndex - 1 + activeDeck.slides.length) % activeDeck.slides.length;
+        renderSlide();
+        startTimer();
+      });
+
+      nextBtn.addEventListener('click', function() {
+        activeIndex = (activeIndex + 1) % activeDeck.slides.length;
+        renderSlide();
+        startTimer();
+      });
+
+      playBtn.addEventListener('click', function() {
+        setPlaying(!isPlaying);
+      });
+
+      closeBtn.addEventListener('click', closeDeck);
+      modal.addEventListener('click', function(event) {
+        if (event.target === modal) closeDeck();
+      });
+      document.addEventListener('keydown', function(event) {
+        if (!modal.classList.contains('open')) return;
+        if (event.key === 'Escape') closeDeck();
+        if (event.key === 'ArrowLeft') prevBtn.click();
+        if (event.key === 'ArrowRight') nextBtn.click();
+      });
     })();
   </script>
