@@ -1,20 +1,20 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
   <title>Secris Solutions | Security, Safety & Training</title>
+  <!-- Font Awesome Icons (Free) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <!-- Google Font for a more professional look -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
   <style>
+    /* ----- RESET & BASE (ARMY THEME – PROFESSIONAL UPGRADE) ----- */
     * {
       margin: 0;
+      
       padding: 0;
       box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
     }
 
     body {
@@ -22,17 +22,12 @@
       background-color: #f5f2eb;
       color: #2c2b28;
       line-height: 1.6;
+      scroll-behavior: smooth;
     }
 
     a {
       text-decoration: none;
       color: inherit;
-    }
-
-    button {
-      font: inherit;
-      border: none;
-      background: transparent;
     }
 
     .container {
@@ -41,6 +36,7 @@
       padding: 0 28px;
     }
 
+    /* ----- ARMY COLOR PALETTE (olive, khaki, dark gray, gold) ----- */
     :root {
       --army-olive: #4a5d3b;
       --army-olive-dark: #2f3d25;
@@ -55,51 +51,70 @@
       --gray-mid: #c9c0b4;
       --shadow-sm: 0 6px 18px rgba(44, 43, 40, 0.12);
       --shadow-md: 0 12px 36px rgba(44, 43, 40, 0.20);
+      --shadow-lg: 0 20px 50px rgba(44, 43, 40, 0.25);
       --border-radius: 12px;
     }
 
-    .btn-primary,
-    .btn-outline,
-    .slide-icon-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 14px 34px;
+    /* ----- BUTTONS (army style – elevated) ----- */
+    .btn-primary, .btn-outline {
+      display: inline-block;
+      padding: 14px 38px;
       border-radius: 8px;
       font-weight: 600;
       font-size: 1rem;
-      transition: all 0.28s ease;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       cursor: pointer;
       border: 2px solid transparent;
+      text-align: center;
       letter-spacing: 0.5px;
       text-transform: uppercase;
-      text-align: center;
-      background: var(--army-olive);
-      color: white;
+      position: relative;
+      overflow: hidden;
     }
 
-    .btn-outline {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.75);
+    .btn-primary {
+      background-color: var(--army-olive);
       color: white;
-    }
-
-    .btn-outline:hover,
-    .btn-primary:hover,
-    .slide-icon-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+      border-color: var(--army-olive);
+      box-shadow: 0 6px 16px rgba(74, 93, 59, 0.35);
     }
 
     .btn-primary:hover {
-      background: var(--army-olive-dark);
+      background-color: var(--army-olive-dark);
       border-color: var(--army-olive-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(74, 93, 59, 0.45);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border-color: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(4px);
     }
 
     .btn-outline:hover {
-      background: rgba(255, 255, 255, 0.22);
+      background: rgba(255, 255, 255, 0.15);
+      border-color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
     }
 
+    /* secondary outline for light sections */
+    .btn-outline-dark {
+      background: transparent;
+      color: var(--army-olive);
+      border-color: var(--army-olive);
+    }
+
+    .btn-outline-dark:hover {
+      background: var(--army-olive);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(74, 93, 59, 0.3);
+    }
+
+    /* ----- HEADER & NAVIGATION (army – refined) ----- */
     header {
       background: var(--army-dark);
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
@@ -125,8 +140,8 @@
     }
 
     .logo span {
-      color: var(--army-gold-light);
       font-weight: 300;
+      color: var(--army-gold-light);
     }
 
     .nav-menu {
@@ -140,9 +155,12 @@
       font-weight: 600;
       color: var(--army-khaki-light);
       padding: 6px 0;
-      position: relative;
+      border-bottom: 3px solid transparent;
+      transition: 0.25s ease;
       font-size: 0.95rem;
+      text-transform: uppercase;
       letter-spacing: 0.8px;
+      position: relative;
     }
 
     .nav-menu a::after {
@@ -153,7 +171,7 @@
       width: 0;
       height: 3px;
       background: var(--army-gold);
-      transition: width 0.25s ease;
+      transition: width 0.3s ease;
     }
 
     .nav-menu a:hover::after,
@@ -161,6 +179,11 @@
       width: 100%;
     }
 
+    .nav-menu a:hover {
+      color: var(--army-gold-light);
+    }
+
+    /* mobile toggle */
     .menu-toggle {
       display: none;
       font-size: 1.8rem;
@@ -171,8 +194,10 @@
       padding: 6px;
     }
 
+    /* ----- HERO SECTION (full background image – professional) ----- */
     .hero {
-      background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65)), url('IMG-20260616-WA0020.jpg');
+      background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65)),
+        url("IMG-20260616-WA0020.jpg");
       background-size: cover;
       background-position: center 30%;
       background-repeat: no-repeat;
@@ -209,7 +234,7 @@
 
     .hero-content .badge {
       display: inline-block;
-      background: rgba(184, 134, 11, 0.24);
+      background: rgba(184, 134, 11, 0.25);
       backdrop-filter: blur(6px);
       padding: 6px 24px;
       border-radius: 60px;
@@ -237,11 +262,11 @@
     }
 
     .hero-content p {
-      color: rgba(255, 255, 255, 0.92);
+      color: rgba(255, 255, 255, 0.9);
       font-size: 1.25rem;
       max-width: 650px;
       margin: 0 auto 36px;
-      background: rgba(0, 0, 0, 0.28);
+      background: rgba(0, 0, 0, 0.3);
       backdrop-filter: blur(4px);
       padding: 18px 28px;
       border-radius: 12px;
@@ -257,12 +282,18 @@
       gap: 18px;
     }
 
+    /* remove old hero-image from this section */
+    .hero-image {
+      display: none;
+    }
+
+    /* ----- FOUNDER & CEO (army cards – upgraded) ----- */
     .founder-ceo {
       padding: 80px 0;
       background: var(--white);
     }
 
-    .section-label {
+    .founder-ceo .section-label {
       text-align: center;
       font-size: 0.9rem;
       text-transform: uppercase;
@@ -272,7 +303,7 @@
       margin-bottom: 6px;
     }
 
-    .section-title-sm {
+    .founder-ceo .section-title-sm {
       text-align: center;
       font-size: 2.5rem;
       font-weight: 700;
@@ -280,7 +311,7 @@
       margin-bottom: 48px;
     }
 
-    .section-title-sm::after {
+    .founder-ceo .section-title-sm::after {
       content: '';
       display: block;
       width: 70px;
@@ -290,7 +321,7 @@
       border-radius: 4px;
     }
 
-    .grid-2 {
+    .founder-ceo .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 40px;
@@ -324,17 +355,17 @@
       box-shadow: var(--shadow-md);
     }
 
-    .icon-wrap {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 48px;
-      height: 48px;
+    .profile-card .icon-wrap {
+      display: inline-block;
       background: var(--army-olive);
       color: white;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
-      margin-bottom: 16px;
+      text-align: center;
+      line-height: 48px;
       font-size: 1.3rem;
+      margin-bottom: 16px;
     }
 
     .profile-card h3 {
@@ -344,13 +375,14 @@
       font-weight: 700;
     }
 
-    .role {
+    .profile-card .role {
       font-weight: 600;
       color: var(--army-olive);
       margin-bottom: 16px;
-      font-size: 0.85rem;
+      font-size: 1rem;
       letter-spacing: 0.5px;
       text-transform: uppercase;
+      font-size: 0.85rem;
     }
 
     .profile-card p {
@@ -359,6 +391,7 @@
       line-height: 1.7;
     }
 
+    /* ----- SERVICES (army theme – elevated) ----- */
     .services {
       padding: 80px 0;
       background: var(--gray-light);
@@ -417,7 +450,7 @@
       border-bottom-color: var(--army-gold);
     }
 
-    .icon-circle {
+    .service-item .icon-circle {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -426,7 +459,7 @@
       background: rgba(74, 93, 59, 0.1);
       border-radius: 50%;
       margin-bottom: 18px;
-      transition: 0.3s ease;
+      transition: 0.3s;
     }
 
     .service-item:hover .icon-circle {
@@ -436,7 +469,7 @@
     .service-item i {
       font-size: 2.4rem;
       color: var(--army-olive);
-      transition: 0.3s ease;
+      transition: 0.3s;
     }
 
     .service-item:hover i {
@@ -455,6 +488,7 @@
       font-size: 0.98rem;
     }
 
+    /* ----- MOCK TEST (army – upgraded) ----- */
     .mocktest {
       padding: 80px 0;
       background: var(--white);
@@ -493,7 +527,6 @@
     .mock-stage ul {
       list-style: none;
       margin: 22px 0 28px;
-      padding-left: 0;
     }
 
     .mock-stage ul li {
@@ -522,7 +555,7 @@
       display: none;
       align-items: center;
       justify-content: center;
-      background: rgba(0, 0, 0, 0.96);
+      background: #000;
       padding: 0;
     }
 
@@ -532,10 +565,10 @@
 
     .slideshow-viewer {
       width: 100vw;
-      height: 100vh;
+      height: 100dvh;
       display: grid;
       grid-template-rows: auto 1fr auto;
-      overflow: hidden;
+      gap: 0;
     }
 
     .slideshow-topbar,
@@ -546,8 +579,7 @@
       gap: 12px;
       color: var(--white);
       padding: 14px 18px;
-      background: rgba(31, 30, 28, 0.85);
-      backdrop-filter: blur(10px);
+      background: rgba(31, 30, 28, 0.82);
     }
 
     .slideshow-title {
@@ -568,6 +600,8 @@
       display: grid;
       place-items: center;
       background: #111;
+      border: 0;
+      border-radius: 0;
       overflow: hidden;
     }
 
@@ -578,12 +612,32 @@
       background: #111;
     }
 
+    .slide-icon-btn {
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(254, 252, 247, 0.35);
+      border-radius: 8px;
+      background: rgba(254, 252, 247, 0.08);
+      color: var(--white);
+      cursor: pointer;
+      display: inline-grid;
+      place-items: center;
+      transition: 0.2s ease;
+    }
+
+    .slide-icon-btn:hover {
+      background: var(--army-gold);
+      border-color: var(--army-gold);
+      color: var(--army-dark);
+    }
+
     .slideshow-actions {
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
+    /* ----- ABOUT US (army – refined) ----- */
     .about {
       padding: 80px 0;
       background: var(--gray-light);
@@ -632,6 +686,7 @@
       color: var(--army-olive);
     }
 
+    /* ----- CONTACT (army – polished) ----- */
     .contact {
       padding: 80px 0;
       background: var(--white);
@@ -669,7 +724,7 @@
       font-size: 1.5rem;
     }
 
-    .cta-box {
+    .contact-info .cta-box {
       margin-top: 32px;
       background: var(--army-olive);
       color: white;
@@ -688,7 +743,7 @@
       border-radius: 8px;
       font-size: 1rem;
       background: white;
-      transition: 0.25s ease;
+      transition: 0.25s;
       font-family: inherit;
     }
 
@@ -711,6 +766,7 @@
       font-size: 1.1rem;
     }
 
+    /* ----- FOOTER (army – refined) ----- */
     footer {
       background: var(--army-dark);
       color: var(--army-khaki-light);
@@ -719,7 +775,7 @@
       border-top: 4px solid var(--army-gold);
     }
 
-    .footer-inner {
+    footer .footer-inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -727,44 +783,44 @@
       gap: 16px;
     }
 
-    .tagline {
+    footer .tagline {
       font-weight: 300;
       letter-spacing: 3px;
       color: var(--army-gold-light);
       font-size: 0.95rem;
     }
 
-    .copy {
+    footer .copy {
       font-size: 0.95rem;
       color: var(--army-khaki);
     }
 
-    .social-icons a {
+    footer .social-icons a {
       color: var(--army-khaki);
       margin: 0 10px;
       font-size: 1.2rem;
-      transition: 0.2s ease;
+      transition: 0.2s;
     }
 
-    .social-icons a:hover {
+    footer .social-icons a:hover {
       color: var(--army-gold-light);
     }
 
+    /* ----- RESPONSIVE (fully mobile-friendly) ----- */
     @media (max-width: 992px) {
-      .grid-2,
+      .founder-ceo .grid-2 {
+        grid-template-columns: 1fr;
+      }
       .mock-grid {
         grid-template-columns: 1fr;
       }
-
       .contact-wrapper {
         grid-template-columns: 1fr;
         padding: 32px 24px;
       }
-
       .hero-content h2 {
         font-size: 2.8rem;
       }
-
       .hero {
         padding: 70px 0 90px;
       }
@@ -840,8 +896,9 @@
 
       .btn-primary,
       .btn-outline {
-        width: 100%;
         padding: 12px 28px;
+        width: 100%;
+        text-align: center;
       }
 
       .hero-buttons {
@@ -860,12 +917,14 @@
   </style>
 </head>
 <body>
+
+<!-- HEADER / NAVIGATION -->
   <header>
     <div class="container navbar">
       <div class="logo">
         <h1>Secris <span>Solutions</span></h1>
       </div>
-      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation">
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">
         <i class="fas fa-bars"></i>
       </button>
       <nav class="nav-menu" id="navMenu">
@@ -878,13 +937,19 @@
     </div>
   </header>
 
+  <!-- HOME PAGE (Hero + Founder/CEO) -->
   <section id="home">
+    <!-- Hero with full background image -->
     <div class="hero">
       <div class="container hero-grid">
         <div class="hero-content">
           <div class="badge"><i class="fas fa-shield-alt" style="margin-right: 8px;"></i> Trusted Security Partner</div>
           <h2>Building Safer Organizations Through <span>Security, Safety</span> &amp; Professional Excellence</h2>
-          <p><i class="fas fa-check-circle" style="color: var(--army-gold-light); margin-right: 10px;"></i> Secris Solutions provides Security Training, Fire &amp; Safety Awareness Programs, POSH Training, Security Consultancy, and Technology-Driven Security Solutions.</p>
+          <p>
+            <i class="fas fa-check-circle" style="color: var(--army-gold-light); margin-right: 10px;"></i>
+            Secris Solutions provides Security Training, Fire &amp; Safety Awareness Programs,
+            POSH Training, Security Consultancy, and Technology-Driven Security Solutions.
+          </p>
           <div class="hero-buttons">
             <a href="#services" class="btn-primary">Explore Services</a>
             <a href="#contact" class="btn-outline">Contact Us</a>
@@ -893,6 +958,7 @@
       </div>
     </div>
 
+    <!-- Founder & CEO (updated names) -->
     <div class="founder-ceo">
       <div class="container">
         <div class="section-label">Leadership</div>
@@ -915,6 +981,7 @@
     </div>
   </section>
 
+  <!-- SERVICES PAGE -->
   <section id="services" class="services">
     <div class="container">
       <h2 class="section-title">Our Services</h2>
@@ -949,20 +1016,29 @@
     </div>
   </section>
 
+  <!-- MOCK TEST PAGE -->
   <section id="mocktest" class="mocktest">
     <div class="container">
       <h2 class="section-title">SSB Preparation Mock Tests</h2>
       <p class="section-sub">Practice with confidence — structured modules for each stage.</p>
       <div class="mock-grid">
+        <!-- Stage 1 -->
         <div class="mock-stage">
           <h4>Stage 1 – PPDT</h4>
           <p>Picture Perception and Discussion Test practice modules with sample scenarios and evaluation guidance.</p>
-          <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 18px;">
-            <button type="button" class="btn-primary ppdt-trigger" data-ppdt="ppdt1">▶ Start PPDT-1</button>
-            <button type="button" class="btn-primary ppdt-trigger" data-ppdt="ppdt2">▶ Start PPDT-2</button>
-            <button type="button" class="btn-primary ppdt-trigger" data-ppdt="ppdt3">▶ Start PPDT-3</button>
-          </div>
+          <a href="#" class="btn-primary ppdt-trigger" data-ppdt="ppdt1">
+  ▶ Start PPDT-1 Test
+</a>
+
+<a href="#" class="btn-primary ppdt-trigger" data-ppdt="ppdt2">
+▶ Start PPDT-2 Test
+</a>
+
+<a href="#" class="btn-primary ppdt-trigger" data-ppdt="ppdt3">
+▶ Start PPDT-3 Test
+</a>
         </div>
+        <!-- Stage 2 -->
         <div class="mock-stage">
           <h4>Stage 2 – Psychology Tests</h4>
           <ul>
@@ -971,12 +1047,13 @@
             <li><i class="fas fa-bolt"></i> <strong>SRT</strong> – Real-life situation-based response practice.</li>
             <li><i class="fas fa-user-check"></i> <strong>SD</strong> – Structured self-assessment and personality evaluation.</li>
           </ul>
-          <button type="button" class="btn-primary">Start Psychology Test</button>
+          <a href="#" class="btn-primary" style="display:inline-block;">Start Psychology Test</a>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ABOUT US -->
   <section id="about" class="about">
     <div class="container about-card">
       <h2 style="color: var(--army-olive-dark); font-size: 2.6rem; font-weight: 800; margin-bottom: 8px;">About Secris Solutions</h2>
@@ -987,6 +1064,7 @@
     </div>
   </section>
 
+  <!-- CONTACT PAGE -->
   <section id="contact" class="contact">
     <div class="container contact-wrapper">
       <div class="contact-info">
@@ -1010,6 +1088,7 @@
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     <div class="container footer-inner">
       <div class="copy">© 2026 Secris Solutions. All Rights Reserved.</div>
@@ -1034,8 +1113,8 @@
         </button>
       </div>
       <div class="slideshow-frame">
-        <img id="slideImage" src="" alt="PPDT slide" />
-        <audio id="slideAudio" preload="metadata"></audio>
+        <img id="slideImage" src="" alt="PPDT slide">
+        <audio id="slideAudio" preload="auto"></audio>
       </div>
       <div class="slideshow-controls">
         <button class="slide-icon-btn" type="button" id="slidePrev" aria-label="Previous slide" title="Previous">
@@ -1053,25 +1132,35 @@
     </div>
   </div>
 
+  <!-- JavaScript for mobile toggle -->
   <script>
     (function() {
-      const menuButton = document.getElementById('menuToggle');
+      const toggleBtn = document.getElementById('menuToggle');
       const navMenu = document.getElementById('navMenu');
-      const navLinks = navMenu.querySelectorAll('a');
 
-      menuButton.addEventListener('click', () => {
-        navMenu.classList.toggle('open');
-        menuButton.querySelector('i').className = navMenu.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars';
-      });
-
-      navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          navMenu.classList.remove('open');
-          menuButton.querySelector('i').className = 'fas fa-bars';
-          navLinks.forEach(item => item.classList.remove('active'));
-          link.classList.add('active');
+      if (toggleBtn && navMenu) {
+        toggleBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          navMenu.classList.toggle('open');
+          const icon = toggleBtn.querySelector('i');
+          if (navMenu.classList.contains('open')) {
+            icon.className = 'fas fa-times';
+          } else {
+            icon.className = 'fas fa-bars';
+          }
         });
-      });
+
+        navMenu.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', function() {
+            navMenu.classList.remove('open');
+            const icon = toggleBtn.querySelector('i');
+            if (icon) icon.className = 'fas fa-bars';
+            // remove active class from all, add to current
+            navMenu.querySelectorAll('a').forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+          });
+        });
+      }
     })();
 
     (function() {
@@ -1079,162 +1168,172 @@
         ppdt1: {
           title: 'PPDT-1 Test',
           slides: [
-            'ppdt-1/Slide1.PNG',
-            'ppdt-1/Slide2.PNG',
-            'ppdt-1/Slide3.PNG',
-            'ppdt-1/Slide4.PNG'
-          ],
-          audio: [
-            'ppdt-1/slide1.m4a',
-            'ppdt-1/slide2.m4a',
-            'ppdt-1/slide3.m4a',
-            'ppdt-1/slide4.m4a'
-          ]
+'ppdt-1/Slide1.PNG',
+'ppdt-1/Slide2.PNG',
+'ppdt-1/Slide3.PNG',
+'ppdt-1/Slide4.PNG'
+],
+
+audio: [
+'ppdt-1/slide1.m4a',
+'ppdt-1/slide2.m4a',
+'ppdt-1/slide3.m4a',
+'ppdt-1/slide4.m4a'
+]
+          timings: [20908, 10599, 31617, 274037]
         },
         ppdt2: {
           title: 'PPDT-2 Test',
           slides: [
-            'ppdt-2/Slide1.PNG',
-            'ppdt-2/Slide2.PNG',
-            'ppdt-2/Slide3.PNG',
-            'ppdt-2/Slide4.PNG'
-          ],
-          audio: [
-            'ppdt-2/slide1.m4a',
-            'ppdt-2/slide2.m4a',
-            'ppdt-2/slide3.m4a',
-            'ppdt-2/slide4.m4a'
-          ]
+'ppdt-2/Slide1.PNG',
+'ppdt-2/Slide2.PNG',
+'ppdt-2/Slide3.PNG',
+'ppdt-2/Slide4.PNG'
+],
+
+audio: [
+'ppdt-2/slide1.m4a',
+'ppdt-2/slide2.m4a',
+'ppdt-2/slide3.m4a',
+'ppdt-2/slide4.m4a'
+]
+          timings: [20908, 10599, 31617, 274037]
         },
         ppdt3: {
           title: 'PPDT-3 Test',
           slides: [
-            'ppdt-3/Slide1.PNG',
-            'ppdt-3/Slide2.PNG',
-            'ppdt-3/Slide3.PNG',
-            'ppdt-3/Slide4.PNG'
-          ],
-          audio: [
-            'ppdt-3/slide1.m4a',
-            'ppdt-3/slide2.m4a',
-            'ppdt-3/slide3.m4a',
-            'ppdt-3/slide4.m4a'
-          ]
+'ppdt-3/Slide1.PNG',
+'ppdt-3/Slide2.PNG',
+'ppdt-3/Slide3.PNG',
+'ppdt-3/Slide4.PNG'
+],
+
+audio: [
+'ppdt-3/slide1.m4a',
+'ppdt-3/slide2.m4a',
+'ppdt-3/slide3.m4a',
+'ppdt-3/slide4.m4a'
+]
+          timings: [20908, 10599, 31617, 274037]
         }
       };
 
       const modal = document.getElementById('ppdtSlideshow');
-      const slideImage = document.getElementById('slideImage');
-      const slideAudio = document.getElementById('slideAudio');
-      const slideTitle = document.getElementById('slideTitle');
-      const slideCount = document.getElementById('slideCount');
-      const prevButton = document.getElementById('slidePrev');
-      const nextButton = document.getElementById('slideNext');
-      const playButton = document.getElementById('slidePlay');
-      const closeButton = document.getElementById('slideClose');
-
+      const image = document.getElementById('slideImage');
+      const audio = document.getElementById('slideAudio');
+      const title = document.getElementById('slideTitle');
+      const count = document.getElementById('slideCount');
+      const closeBtn = document.getElementById('slideClose');
+      const prevBtn = document.getElementById('slidePrev');
+      const nextBtn = document.getElementById('slideNext');
+      const playBtn = document.getElementById('slidePlay');
       let activeDeck = null;
       let activeIndex = 0;
       let isPlaying = true;
+      let timer = null;
 
-      function updatePlayButton() {
-        playButton.innerHTML = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
-        playButton.setAttribute('aria-label', isPlaying ? 'Pause slideshow' : 'Play slideshow');
-        playButton.setAttribute('title', isPlaying ? 'Pause' : 'Play');
+      function renderSlide() {
+        if (!activeDeck) return;
+        image.src = activeDeck.slides[activeIndex];
+        image.alt = `${activeDeck.title} slide ${activeIndex + 1}`;
+        audio.src = activeDeck.audio[activeIndex];
+        audio.currentTime = 0;
+        if (isPlaying) {
+          audio.play().catch(function() {});
+        }
+        title.textContent = activeDeck.title;
+        count.textContent = `Slide ${activeIndex + 1} / ${activeDeck.slides.length}`;
       }
 
-      function updateSlide() {
-        if (!activeDeck) return;
-        slideImage.src = activeDeck.slides[activeIndex];
-        slideImage.alt = `${activeDeck.title} slide ${activeIndex + 1}`;
-        slideAudio.src = activeDeck.audio[activeIndex];
-        slideAudio.load();
-        slideTitle.textContent = activeDeck.title;
-        slideCount.textContent = `Slide ${activeIndex + 1} / ${activeDeck.slides.length}`;
-        updatePlayButton();
-        if (isPlaying) {
-          slideAudio.play().catch(() => {});
+      function stopTimer() {
+        if (timer) {
+          clearTimeout(timer);
+          timer = null;
         }
       }
 
-      function openSlideshow(deckKey) {
+      function startTimer() {
+        stopTimer();
+        if (!isPlaying || !activeDeck) return;
+        timer = setTimeout(function() {
+          activeIndex = (activeIndex + 1) % activeDeck.slides.length;
+          renderSlide();
+          startTimer();
+        }, activeDeck.timings[activeIndex]);
+      }
+
+      function setPlaying(nextState) {
+        isPlaying = nextState;
+        playBtn.innerHTML = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
+        playBtn.setAttribute('aria-label', isPlaying ? 'Pause slideshow' : 'Play slideshow');
+        playBtn.setAttribute('title', isPlaying ? 'Pause' : 'Play');
+        if (isPlaying) {
+          audio.play().catch(function() {});
+        } else {
+          audio.pause();
+        }
+        startTimer();
+      }
+
+      function openDeck(deckKey) {
         activeDeck = decks[deckKey];
         activeIndex = 0;
-        isPlaying = true;
         modal.classList.add('open');
         modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
-        updateSlide();
+        renderSlide();
+        setPlaying(true);
         if (modal.requestFullscreen) {
-          modal.requestFullscreen().catch(() => {});
+          modal.requestFullscreen().catch(function() {});
         }
       }
 
-      function closeSlideshow() {
+      function closeDeck() {
+        stopTimer();
         modal.classList.remove('open');
         modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
-        slideAudio.pause();
-        slideAudio.removeAttribute('src');
-        slideAudio.load();
-        slideImage.src = '';
-        activeDeck = null;
-        if (document.fullscreenElement && document.exitFullscreen) {
-          document.exitFullscreen().catch(() => {});
+        audio.pause();
+        audio.removeAttribute('src');
+        audio.load();
+        image.src = '';
+        if (document.fullscreenElement === modal && document.exitFullscreen) {
+          document.exitFullscreen().catch(function() {});
         }
       }
 
-      function goToSlide(index) {
-        if (!activeDeck) return;
-        activeIndex = (index + activeDeck.slides.length) % activeDeck.slides.length;
-        updateSlide();
-      }
-
-      function nextSlide() {
-        goToSlide(activeIndex + 1);
-      }
-
-      function prevSlide() {
-        goToSlide(activeIndex - 1);
-      }
-
-      document.querySelectorAll('.ppdt-trigger').forEach(trigger => {
-        trigger.addEventListener('click', () => {
-          openSlideshow(trigger.dataset.ppdt);
+      document.querySelectorAll('.ppdt-trigger').forEach(function(trigger) {
+        trigger.addEventListener('click', function(event) {
+          event.preventDefault();
+          openDeck(trigger.dataset.ppdt);
         });
       });
 
-      prevButton.addEventListener('click', prevSlide);
-      nextButton.addEventListener('click', nextSlide);
-      closeButton.addEventListener('click', closeSlideshow);
-
-      playButton.addEventListener('click', () => {
-        isPlaying = !isPlaying;
-        updatePlayButton();
-        if (isPlaying) {
-          slideAudio.play().catch(() => {});
-        } else {
-          slideAudio.pause();
-        }
+      prevBtn.addEventListener('click', function() {
+        activeIndex = (activeIndex - 1 + activeDeck.slides.length) % activeDeck.slides.length;
+        renderSlide();
+        startTimer();
       });
 
-      modal.addEventListener('click', event => {
-        if (event.target === modal) {
-          closeSlideshow();
-        }
+      nextBtn.addEventListener('click', function() {
+        activeIndex = (activeIndex + 1) % activeDeck.slides.length;
+        renderSlide();
+        startTimer();
       });
 
-      document.addEventListener('keydown', event => {
+      playBtn.addEventListener('click', function() {
+        setPlaying(!isPlaying);
+      });
+
+      closeBtn.addEventListener('click', closeDeck);
+      modal.addEventListener('click', function(event) {
+        if (event.target === modal) closeDeck();
+      });
+      document.addEventListener('keydown', function(event) {
         if (!modal.classList.contains('open')) return;
-        if (event.key === 'Escape') closeSlideshow();
-        if (event.key === 'ArrowLeft') prevSlide();
-        if (event.key === 'ArrowRight') nextSlide();
-      });
-
-      slideAudio.addEventListener('ended', () => {
-        if (isPlaying) nextSlide();
+        if (event.key === 'Escape') closeDeck();
+        if (event.key === 'ArrowLeft') prevBtn.click();
+        if (event.key === 'ArrowRight') nextBtn.click();
       });
     })();
   </script>
-</body>
-</html>
